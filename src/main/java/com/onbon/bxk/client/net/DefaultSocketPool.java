@@ -38,24 +38,39 @@ public class DefaultSocketPool implements SocketPool {
         //初始化对象池
         GenericObjectPool genericObjectPool=new GenericObjectPool<Socket>(new SocketFactory(host,port));
         //设置池中最大对象数量
-        genericObjectPool.setMaxTotal(maxTotal);
-        //设置最小空闲等待时间(当对象池中空闲对象持续时间达到这个时间时可能会被移除)为无穷大
-        genericObjectPool.setMinEvictableIdleTime(Duration.ofMillis(minEvictableIdleTimeMillis));
+        if(null !=maxTotal){
+            genericObjectPool.setMaxTotal(maxTotal);
+        }
+
+        //设置最小空闲等待时间(当对象池中空闲对象持续时间达到这个时间时可能会被移除)
+        if(null != minEvictableIdleTimeMillis){
+            genericObjectPool.setMinEvictableIdleTime(Duration.ofMillis(minEvictableIdleTimeMillis));
+        }
         //设置最大空闲数量
-        genericObjectPool.setMaxIdle(maxIdle);
+        if(null != maxIdle){
+           genericObjectPool.setMaxIdle(maxIdle);
+        }
         //连接空闲的最小时间，达到此值后空闲链接将会被移除，且保留minIdle个空闲连接数；
-        genericObjectPool.setSoftMinEvictableIdleTime(Duration.ofMillis(minEvictableIdleTimeMillis));
+        if (null != minEvictableIdleTimeMillis) {
+            genericObjectPool.setSoftMinEvictableIdleTime(Duration.ofMillis(minEvictableIdleTimeMillis));
+        }
+
         //空闲连接检测的周期（单位毫秒）；如果为负值，表示不运行检测线程；
-        genericObjectPool.setTimeBetweenEvictionRuns(Duration.ofMillis(timeBetweenEvictionRunsMillis));
+        if(null != timeBetweenEvictionRunsMillis){
+            genericObjectPool.setTimeBetweenEvictionRuns(Duration.ofMillis(timeBetweenEvictionRunsMillis));
+        }
+
         //设置最小空闲链接数量
-        genericObjectPool.setMinIdle(minIdle);
+        if(null != minIdle){
+            genericObjectPool.setMinIdle(minIdle);
+        }
         ObjectPool<Socket> socketPooled=(ObjectPool<Socket>)genericObjectPool;
         this.objectPool = socketPooled;
     }
 
     private void check() throws SocketException {
         if(objectPool == null){
-            throw new SocketException("socket pool not init");
+            throw new SocketException("socket pool not init please check client is opened");
         }
     }
 

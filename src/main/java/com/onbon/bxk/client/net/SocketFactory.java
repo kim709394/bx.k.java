@@ -41,6 +41,7 @@ public class SocketFactory extends BasePooledObjectFactory<Socket> {
 
     @Override
     public void destroyObject(PooledObject<Socket> p) throws Exception {
+        System.out.println("关闭");
         Socket socket = p.getObject();
         if(socket != null && !socket.isClosed()){
             socket.close();

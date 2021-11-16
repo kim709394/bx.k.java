@@ -62,10 +62,23 @@ public class BxAreaDynamic extends BxArea {
 
     //
     // text alignment
+    /**
+     * 字体对齐方式/区域数据排版
+     * 行（上下左右）字对齐方式
+     * Bit1 Bit0
+     * 0 0 ----左对齐（左右 默认）,上对齐(上下 默认)
+     * 0 1 ----右对齐(左右),下对齐（上下）
+     * 1 0 ----居中对齐(左右),居中对齐（上下）
+     * */
     private byte alignment = 0x00;
 
     //
     // single line
+    /**
+     * 是否单行显示
+     * 0x01——单行显示
+     * 0x02——多行显示
+     * */
     private byte singleLine = 0x02;
 
     //
