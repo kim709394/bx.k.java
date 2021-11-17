@@ -7,7 +7,7 @@ import com.onbon.bxk.client.base.BxCmd;
  * @description   tcp专用客户端
  * @date 2021/11/12
  */
-public interface SocketClient {
+public interface BxSocketClient {
 
 
     /**

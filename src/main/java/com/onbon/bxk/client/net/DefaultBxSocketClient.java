@@ -12,11 +12,11 @@ import java.net.SocketException;
  * @description
  * @date 2021/11/12
  */
-public class DefaultSocketClient implements SocketClient {
+public class DefaultBxSocketClient implements BxSocketClient {
 
     private SocketPool socketPool;
 
-    public DefaultSocketClient(SocketPool socketPool){
+    public DefaultBxSocketClient(SocketPool socketPool){
         this.socketPool = socketPool;
     }
 

@@ -1,8 +1,8 @@
 import com.onbon.bxk.client.base.*;
 import com.onbon.bxk.client.net.BxDataPack;
 import com.onbon.bxk.client.net.BxResp;
-import com.onbon.bxk.client.net.SocketClient;
-import com.onbon.bxk.client.net.SocketClientBuilder;
+import com.onbon.bxk.client.net.BxSocketClient;
+import com.onbon.bxk.client.net.BxSocketClientBuilder;
 import org.junit.Test;
 
 import java.io.InputStream;
@@ -21,11 +21,11 @@ import java.util.List;
  */
 public class ClientTest {
 
-    private SocketClient client;
+    private BxSocketClient client;
 
     private void init(){
-        SocketClient socketClient = new SocketClientBuilder().build("192.168.1.115", 5005);
-        this.client = socketClient;
+        BxSocketClient bxSocketClient = new BxSocketClientBuilder().build("192.168.1.115", 5005);
+        this.client = bxSocketClient;
     }
 
     /**
