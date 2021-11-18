@@ -14,6 +14,7 @@ import java.net.SocketException;
  */
 public class DefaultBxSocketClient implements BxSocketClient {
 
+    private Boolean isOpen;
     private SocketPool socketPool;
 
     public DefaultBxSocketClient(SocketPool socketPool){
@@ -22,8 +23,14 @@ public class DefaultBxSocketClient implements BxSocketClient {
 
 
     @Override
-    public void open() {
-        socketPool.init();
+    public void open() throws SocketException {
+        if(isOpen){
+            throw new SocketException("bxSocketClient have alread opened");
+        }else{
+            socketPool.init();
+            isOpen=true;
+        }
+
     }
 
     @Override
