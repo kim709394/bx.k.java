@@ -58,7 +58,14 @@ public class DefaultBxSocketClient implements BxSocketClient {
 
     @Override
     public void close() throws Exception {
-        socketPool.clear();
-        socketPool.close();
+        if(isOpen){
+            socketPool.clear();
+            socketPool.close();
+            isOpen=false;
+        }else{
+            throw new SocketException("bxSocketClient have alread closed");
+        }
+
+
     }
 }
