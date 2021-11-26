@@ -19,6 +19,7 @@ public class DefaultBxSocketClient implements BxSocketClient {
 
     public DefaultBxSocketClient(SocketPool socketPool){
         this.socketPool = socketPool;
+        isOpen=Boolean.FALSE;
     }
 
 
@@ -36,7 +37,9 @@ public class DefaultBxSocketClient implements BxSocketClient {
     @Override
     public void sendCmd(BxCmd cmd) throws Exception {
         Socket socket = socketPool.borrowSocket();
-        try (OutputStream out=socket.getOutputStream(); InputStream in=socket.getInputStream()){
+        OutputStream out=socket.getOutputStream();
+        InputStream in=socket.getInputStream();
+        try {
             // 对命令进行封装
             BxDataPack dataPack = new BxDataPack(cmd);
             // 生成命令序列

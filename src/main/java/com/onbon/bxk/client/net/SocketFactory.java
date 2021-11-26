@@ -5,6 +5,7 @@ import org.apache.commons.pool2.DestroyMode;
 import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.impl.DefaultPooledObject;
 
+import java.net.InetSocketAddress;
 import java.net.Socket;
 
 /**
@@ -27,6 +28,7 @@ public class SocketFactory extends BasePooledObjectFactory<Socket> {
     @Override
     public Socket create() throws Exception {
         return new Socket(host,port);
+
     }
 
     @Override
@@ -41,7 +43,7 @@ public class SocketFactory extends BasePooledObjectFactory<Socket> {
 
     @Override
     public void destroyObject(PooledObject<Socket> p) throws Exception {
-        System.out.println("关闭");
+        //System.out.println("关闭");
         Socket socket = p.getObject();
         if(socket != null && !socket.isClosed()){
             socket.close();
