@@ -98,7 +98,7 @@ public class BxAreaDynamic extends BxArea {
     //0x04——向右移动
     //0x05——向上移动
     //0x06——向下移动
-    private byte dispMode = 0x02;
+    private byte dispMode = 0x01;
 
     //
     private byte exitMode = 0x00;

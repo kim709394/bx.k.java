@@ -24,7 +24,7 @@ public class ClientTest {
     private BxSocketClient client;
 
     private void init(){
-        BxSocketClient bxSocketClient = new BxSocketClientBuilder().build("192.168.1.115", 5005);
+        BxSocketClient bxSocketClient = new BxSocketClientBuilder().build("192.168.1.215", 5005);
         this.client = bxSocketClient;
     }
 
@@ -73,7 +73,7 @@ public class ClientTest {
         init();
         client.open();
         //String content = " 今天是\\FE000\\DY 年\\DL 月\\DD 日\\n\\C3\\DH 时\\DM 分\\DS 秒";
-        String content = "淮南万泰电子股份有限公司";
+        String content = "\\FO001王国培　\\n王国培　\\n王国培　\\n王国培";
         client.sendCmd(getDynamicCmd(content));
         client.close();
     }
@@ -82,9 +82,9 @@ public class ClientTest {
     private BxCmd getDynamicCmd(String content) throws UnsupportedEncodingException {
         byte id=1;      //区域唯一标识
         short x=0;      //横向偏移多少个像素单位
-        short y=32;      //纵向偏移多少个像素单位
+        short y=0;      //纵向偏移多少个像素单位
         short w=96;     //宽度是多少个像素单位，led屏幕上面每一行的小灯个数
-        short h=32;     //高度是多少个像素单位
+        short h=64;     //高度是多少个像素单位
         //动态区要显示的内容
         //String content = "王国培，AI算法大师，朱集东矿，三班倒，工号:12306，淮南万泰电子股份有限公司。";
         //String content = "酷酷酷酷酷酷酷酷酷，哦哦哦哦哦哦，啦啦啦啦啦啦啦，哈哈哈哈哈，怕怕怕怕怕怕怕";
@@ -124,7 +124,7 @@ public class ClientTest {
     @Test
     public void dynamicAreaNonPool() throws Exception{
 
-        Socket socket=new Socket("192.168.1.115",5005);
+        Socket socket=new Socket("192.168.1.215",5005);
         try (OutputStream out=socket.getOutputStream(); InputStream in = socket.getInputStream();){
 
             String content = "人名：王国培U，标识卡号:1001,职位：普通矿工";
