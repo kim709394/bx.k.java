@@ -5,9 +5,10 @@ import java.net.SocketException;
 
 /**
  * @author huangjie
- * @description
+ * @description   socket连接池，无效
  * @date 2021/11/12
  */
+@Deprecated
 public interface SocketPool {
 
 
